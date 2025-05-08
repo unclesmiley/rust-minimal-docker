@@ -10,8 +10,7 @@ ENV BINARY_NAME=$BINARY_NAME_DEFAULT
 # Build dummy main with the project's Cargo lock and toml
 # This is a docker trick in order to avoid downloading and building 
 # dependencies when lock and toml not is modified.
-COPY Cargo.lock .
-COPY Cargo.toml .
+COPY Cargo.* .
 RUN mkdir src \
     && echo "fn main() {print!(\"Dummy main\");} // dummy file" > src/main.rs
 RUN set -x && cargo build --target x86_64-unknown-linux-musl --release
